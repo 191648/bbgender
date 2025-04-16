@@ -1,3 +1,4 @@
+
 let playerName = "";
 let playerAnswers = {};
 let completedMissions = [];
@@ -10,9 +11,9 @@ document.querySelectorAll('.cell').forEach(cell => {
     } else if (cell.id === "reveal") {
       handleRevealMission();
     } else {
-      const role = cell.getAttribute('data-role');
-      showMessage(`${role}：這裡什麼都沒有唷～<br/><button onclick="closeMessage()">關閉</button>`);
-    }
+  const role = cell.getAttribute('data-role');
+  showMessage(`${role}：這裡什麼都沒有唷～<br/><button onclick="closeMessage()">關閉</button>`);
+}
   });
 });
 
@@ -83,9 +84,7 @@ function chooseAnswer(choice) {
     <br/><button onclick="closeMessage()">關閉</button>
   `;
 
-  if (!completedMissions.includes("1")) {
-    completedMissions.push("1");
-  }
+  completedMissions.push("1");
   checkReveal();
 }
 
@@ -99,9 +98,7 @@ function guessZhaojun(choice) {
     <br/><button onclick="closeMessage()">關閉</button>
   `;
 
-  if (!completedMissions.includes("2")) {
-    completedMissions.push("2");
-  }
+  completedMissions.push("2");
   checkReveal();
 }
 
@@ -115,9 +112,7 @@ function guessGender(choice) {
     <br/><button onclick="closeMessage()">關閉</button>
   `;
 
-  if (!completedMissions.includes("3")) {
-    completedMissions.push("3");
-  }
+  completedMissions.push("3");
   checkReveal();
 }
 
@@ -135,11 +130,14 @@ function handleRevealMission() {
   msgBox.classList.remove("hidden");
 }
 
-// 
 function finalReveal(choice) {
   const correct = choice === "男生";
   playerAnswers["reveal"] = { question: "最終揭示", answer: choice, correct };
 
+  // 
+  document.getElementById("message-box").classList.remove("hidden");
+
+  //
   document.getElementById("message-text").innerHTML = `
     <h2 class="typing">${correct ? "恭喜你答對了！他是男寶寶！" : "錯啦～他是男寶寶唷！"}</h2>
     <img src="sp.png" alt="慶祝圖案" style="width:400px" />
@@ -147,6 +145,7 @@ function finalReveal(choice) {
     <button onclick="closeMessage()">關閉</button>
   `;
 
+ 
   sendToGoogleSheet();
 }
 
@@ -193,6 +192,5 @@ function sendToGoogleSheet() {
     console.log("✅ 已送出到 Google Sheet！");
   }).catch(err => {
     console.error("❌ 送出失敗：", err);
-    alert("資料傳送失敗，請稍後再試！");
   });
 }
