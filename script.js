@@ -1,3 +1,4 @@
+
 let playerName = "";
 let playerAnswers = {};
 let completedMissions = [];
@@ -120,9 +121,8 @@ function handleRevealMission() {
   const msgText = document.getElementById("message-text");
 
   msgText.innerHTML = `
-    <p>最終揭示：猜猜他是男生定女生？</p>
-<img src="small.png" style="width:200px" />
-
+    <p>最終揭示：你知道的寶寶性別是什麼？</p>
+    <img src="small.png" style="width:200px" />
     <br/>
     <button onclick="finalReveal('男生')">1. 男生</button>
     <button onclick="finalReveal('女生')">2. 女生</button>
@@ -137,13 +137,12 @@ function finalReveal(choice) {
   document.getElementById("reveal-sound").play();
   document.getElementById("message-text").innerHTML = `
     <h2 class="typing">${correct ? "恭喜你答對了！他是男寶寶！" : "錯啦～他是男寶寶唷！"}</h2>
-   
-                                          <img src="sp.png" alt="慶祝圖案" style="width:400px" />
-                                       
-
+    <img src="sp.png" alt="慶祝圖案" style="width:400px" />
     <br/><p>${playerName} 的挑戰完成！</p>
     <button onclick="closeMessage()">關閉</button>
   `;
+
+  sendToGoogleSheet();
 }
 
 function closeMessage() {
@@ -164,7 +163,6 @@ function checkReveal() {
 particlesJS.load('particles-js', 'particles.json', function () {
   console.log('Particles loaded!');
 });
-
 
 function sendToGoogleSheet() {
   const data = {
@@ -191,21 +189,4 @@ function sendToGoogleSheet() {
   }).catch(err => {
     console.error("❌ 送出失敗：", err);
   });
-}
-
-// === 在 finalReveal() 裡面結尾加上送出 ===
-function finalReveal(choice) {
-  const correct = choice === "男生";
-  playerAnswers["reveal"] = { question: "最終揭示", answer: choice, correct };
-
-  document.getElementById("reveal-sound").play();
-  document.getElementById("message-text").innerHTML = `
-    <h2 class="typing">${correct ? "恭喜你答對了！他是男寶寶！" : "錯啦～他是男寶寶唷！"}</h2>
-    <img src="sp.png" alt="慶祝圖案" style="width:400px" />
-    <br/><p>${playerName} 的挑戰完成！</p>
-    <button onclick="closeMessage()">關閉</button>
-  `;
-
-  // ✅ 自動送出紀錄
-  sendToGoogleSheet();
 }
