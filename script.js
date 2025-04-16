@@ -1,4 +1,3 @@
-
 let playerName = "";
 let playerAnswers = {};
 let completedMissions = [];
@@ -12,7 +11,7 @@ document.querySelectorAll('.cell').forEach(cell => {
       handleRevealMission();
     } else {
       const role = cell.getAttribute('data-role');
-      showMessage(`${role}：這裡什麼都沒有唷～`);
+      showMessage(`${role}：這裡什麼都沒有唷～<br/><button onclick="closeMessage()">關閉</button>`);
     }
   });
 });
@@ -43,7 +42,7 @@ function handleMission(number) {
   if (number === "1") {
     msgText.innerHTML = `
       <p>第一關：猜猜我是誰？</p>
-      <img src="black.png" style="width:150px" />
+      <img src="black.png" style="width:250px" />
       <br/><br/>
       <button onclick="chooseAnswer('比卡超')">1. 比卡超</button>
       <button onclick="chooseAnswer('奇異種子')">2. 奇異種子</button>
@@ -54,7 +53,7 @@ function handleMission(number) {
   if (number === "2") {
     msgText.innerHTML = `
       <p>第二關：哪一邊是肇鈞？</p>
-      <img src="mama.jpg" style="width:200px" />
+      <img src="mama.jpg" style="width:250px" />
       <br/><br/>
       <button onclick="guessZhaojun('左')">1. 左邊</button>
       <button onclick="guessZhaojun('右')">2. 右邊</button>
@@ -64,7 +63,7 @@ function handleMission(number) {
   if (number === "3") {
     msgText.innerHTML = `
       <p>第三關：猜猜他是男生定女生？</p>
-      <img src="jun.jpg" style="width:150px" />
+      <img src="jun.jpg" style="width:250px" />
       <br/><br/>
       <button onclick="guessGender('男生')">1. 男生</button>
       <button onclick="guessGender('女生')">2. 女生</button>
@@ -80,11 +79,13 @@ function chooseAnswer(choice) {
 
   document.getElementById("message-text").innerHTML = `
     <p>${correct ? "答對了！是比卡超～" : "錯了，是比卡超啦！"}</p>
-    <img src="pika.png" style="width:150px" />
+    <img src="pika.png" style="width:250px" />
     <br/><button onclick="closeMessage()">關閉</button>
   `;
 
-  completedMissions.push("1");
+  if (!completedMissions.includes("1")) {
+    completedMissions.push("1");
+  }
   checkReveal();
 }
 
@@ -94,11 +95,13 @@ function guessZhaojun(choice) {
 
   document.getElementById("message-text").innerHTML = `
     <p>${correct ? "答對了～你太了解他了！" : "錯啦～再觀察一下！"}</p>
-    <img src="mama.jpg" style="width:200px" />
+    <img src="mama.jpg" style="width:250px" />
     <br/><button onclick="closeMessage()">關閉</button>
   `;
 
-  completedMissions.push("2");
+  if (!completedMissions.includes("2")) {
+    completedMissions.push("2");
+  }
   checkReveal();
 }
 
@@ -112,7 +115,9 @@ function guessGender(choice) {
     <br/><button onclick="closeMessage()">關閉</button>
   `;
 
-  completedMissions.push("3");
+  if (!completedMissions.includes("3")) {
+    completedMissions.push("3");
+  }
   checkReveal();
 }
 
@@ -130,6 +135,7 @@ function handleRevealMission() {
   msgBox.classList.remove("hidden");
 }
 
+// ✅ Updated this function based on image info (gender is 男生)
 function finalReveal(choice) {
   const correct = choice === "男生";
   playerAnswers["reveal"] = { question: "最終揭示", answer: choice, correct };
@@ -188,5 +194,6 @@ function sendToGoogleSheet() {
     console.log("✅ 已送出到 Google Sheet！");
   }).catch(err => {
     console.error("❌ 送出失敗：", err);
+    alert("資料傳送失敗，請稍後再試！");
   });
 }
