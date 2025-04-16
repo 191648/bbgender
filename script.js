@@ -135,12 +135,11 @@ function handleRevealMission() {
   msgBox.classList.remove("hidden");
 }
 
-// ✅ Updated this function based on image info (gender is 男生)
+// 
 function finalReveal(choice) {
   const correct = choice === "男生";
   playerAnswers["reveal"] = { question: "最終揭示", answer: choice, correct };
 
-  document.getElementById("reveal-sound").play();
   document.getElementById("message-text").innerHTML = `
     <h2 class="typing">${correct ? "恭喜你答對了！他是男寶寶！" : "錯啦～他是男寶寶唷！"}</h2>
     <img src="sp.png" alt="慶祝圖案" style="width:400px" />
