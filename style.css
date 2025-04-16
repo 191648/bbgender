@@ -71,15 +71,22 @@ body {
 }
 
 
-
-.fireworks {
-  margin-top: 20px;
-  height: 100px;
-  background: url('https://media.giphy.com/media/3o6ZsU0P3TDEYxhu3O/giphy.gif') center center no-repeat;
-  background-size: contain;
+.special-reveal {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffddcc;
+  color: #333;
+  border: 3px solid #ff9999;
+  grid-column: span 3; /* 橫跨三格，讓它寬 */
+  height: 120px;
+  display: flex;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
 }
-
-
 
 
 
