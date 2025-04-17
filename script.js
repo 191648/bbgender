@@ -108,7 +108,7 @@ function guessGender(choice) {
 
   document.getElementById("message-text").innerHTML = `
     <p>${correct ? "答對了～他是男生，因為他是瑋臻唷！" : "錯啦～，因為他是瑋臻唷！"}</p>
-    <img src="jun.jpg" style="width:150px" />
+    <img src="jun.jpg" style="width:250px" />
     <br/><button onclick="closeMessage()">關閉</button>
   `;
 
@@ -122,7 +122,7 @@ function handleRevealMission() {
 
   msgText.innerHTML = `
     <p>最後一題：這是第二位小寶寶的影像。猜猜性別是什麼？</p>
-    <img src="small.png" style="width:200px" />
+    <img src="small.png" style="width:300px" />
     <br/>
     <button onclick="finalReveal('男生')">1. 男生</button>
     <button onclick="finalReveal('女生')">2. 女生</button>
