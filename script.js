@@ -93,7 +93,7 @@ function guessZhaojun(choice) {
   playerAnswers["mission2"] = { question: "哪一邊是肇鈞？", answer: choice, correct };
 
   document.getElementById("message-text").innerHTML = `
-    <p>${correct ? "答對了～你太了解他了！" : "錯啦～再觀察一下！"}</p>
+    <p>${correct ? "答對了～你太了解他了！" : "錯啦～左邊是lily！"}</p>
     <img src="mama.jpg" style="width:250px" />
     <br/><button onclick="closeMessage()">關閉</button>
   `;
