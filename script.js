@@ -121,7 +121,7 @@ function handleRevealMission() {
   const msgText = document.getElementById("message-text");
 
   msgText.innerHTML = `
-    <p>最終揭示：你知道的寶寶性別是什麼？</p>
+    <p>最後一題：這是第二位小寶寶的影像。猜猜性別是什麼？</p>
     <img src="small.png" style="width:200px" />
     <br/>
     <button onclick="finalReveal('男生')">1. 男生</button>
