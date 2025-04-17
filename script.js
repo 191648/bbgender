@@ -104,7 +104,7 @@ function guessZhaojun(choice) {
 
 function guessGender(choice) {
   const correct = choice === "男生";
-  playerAnswers["mission3"] = { question: "猜猜他是男生定女生？", answer: choice, correct };
+  playerAnswers["mission3"] = { question: "猜猜這一位是男生還是女生？", answer: choice, correct };
 
   document.getElementById("message-text").innerHTML = `
     <p>${correct ? "答對了～他是男生，因為他是瑋臻唷！" : "錯啦～，因為他是瑋臻唷！"}</p>
